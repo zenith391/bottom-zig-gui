@@ -16,7 +16,9 @@ pub fn encode(button: *zgt.Button_Impl) !void {
 
     const allocator = zgt.internal.scratch_allocator;
     const encoded = try bottom.encoder.encode(input.getText(), allocator);
-    // defer allocator.free(encoded);
+
+    // Free old text
+    allocator.free(output.getText());
 
     output.setText(encoded);
 }
@@ -28,7 +30,7 @@ pub fn decode(button: *zgt.Button_Impl) !void {
 
     const allocator = zgt.internal.scratch_allocator;
     const decoded = try bottom.decoder.decode(input.getText(), allocator);
-    // defer allocator.free(decoded);
+    allocator.free(output.getText());
 
     output.setText(decoded);
 }
