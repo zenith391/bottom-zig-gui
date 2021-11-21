@@ -1,9 +1,17 @@
 const std = @import("std");
+const zgt = @import("zgt");
+pub usingnamespace zgt.cross_platform;
 
-pub fn main() anyerror!void {
-    std.log.info("All your codebase are belong to us.", .{});
-}
+pub fn main() !void {
+    try zgt.backend.init();
 
-test "basic test" {
-    try std.testing.expectEqual(10, 3 + 7);
+    var window = try zgt.Window.init();
+    try window.set(
+        zgt.Button(.{ .label = "Test" })
+    );
+    
+    window.resize(800, 600);
+    window.show();
+
+    zgt.runEventLoop();
 }
