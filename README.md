@@ -2,6 +2,8 @@
 
 ![the glorius software in action](https://raw.githubusercontent.com/zenith391/bottom-zig-gui/main/.github/screenshot.png) 
 
+Live WebAssembly example: https://bwsecondary.ddns.net/zig/bottom/
+
 Courtesy of https://github.com/Deecellar/bottom-zig
 
 This also serves as a simple example of [zgt](https://github.com/zenith391/zgt).
