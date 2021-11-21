@@ -1,6 +1,7 @@
 const std = @import("std");
 const zgt = @import("zgt");
-const BottomEncoder = @import("encoder.zig").BottomEncoder;
+const bottom = @import("bottom");
+
 pub usingnamespace zgt.cross_platform;
 
 pub fn encode(button: *zgt.Button_Impl) !void {
@@ -14,10 +15,22 @@ pub fn encode(button: *zgt.Button_Impl) !void {
     const output = root.get("decode-text").?.as(zgt.TextField_Impl);
 
     const allocator = zgt.internal.scratch_allocator;
-    const encoded = try BottomEncoder.encode(input.getText(), allocator);
-    defer allocator.free(encoded);
+    const encoded = try bottom.encoder.encode(input.getText(), allocator);
+    // defer allocator.free(encoded);
 
     output.setText(encoded);
+}
+
+pub fn decode(button: *zgt.Button_Impl) !void {
+    const root = button.getRoot().?;
+    const input = root.get("decode-text").?.as(zgt.TextField_Impl);
+    const output = root.get("encode-text").?.as(zgt.TextField_Impl);
+
+    const allocator = zgt.internal.scratch_allocator;
+    const decoded = try bottom.decoder.decode(input.getText(), allocator);
+    // defer allocator.free(decoded);
+
+    output.setText(decoded);
 }
 
 pub fn main() !void {
@@ -41,7 +54,7 @@ pub fn main() !void {
             }),
             zgt.Row(.{}, .{
                 zgt.Button(.{ .label = "Encode", .onclick = encode }),
-                zgt.Button(.{ .label = "Decode" }),
+                zgt.Button(.{ .label = "Decode", .onclick = decode }),
             })
         })
     );

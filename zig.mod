@@ -4,3 +4,6 @@ license: MIT
 description: GUI version of bottom-zig
 dev_dependencies:
     - src: git https://github.com/zenith391/zgt
+    - src: git https://github.com/Deecellar/bottom-zig
+      name: bottom
+      main: bottom.zig
