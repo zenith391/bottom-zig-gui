@@ -9,7 +9,6 @@ pub fn encode(button: *zgt.Button_Impl) !void {
 
     // Get 'encode-text' and cast it to a TextField
     const input = root.get("encode-text").?.as(zgt.TextField_Impl);
-    std.log.info("Encode {s}", .{ input.getText() });
 
     // Same cast, but with 'decode-text'
     const output = root.get("decode-text").?.as(zgt.TextField_Impl);
